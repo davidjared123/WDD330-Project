@@ -114,6 +114,10 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
+.hide {
+  display: none;
+}
+
 /* End utility classes */
 
 /* Cart icon styles */
@@ -121,6 +125,7 @@ button {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  display: inline-block;
 }
 
 .cart svg {
@@ -131,6 +136,17 @@ button {
   fill: gray;
 }
 
+.cart-superscript {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+  border-radius: 50%;
+  padding: 0.1em 0.4em;
+  font-size: var(--small-font);
+  font-weight: bold;
+}
 /* End cart icon styles */
 
 .mission {

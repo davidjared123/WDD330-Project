@@ -35,3 +35,27 @@ export function renderListWithTemplate(
   const htmlStrings = list.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function updateCartBadge() {
+  const cartItems = getLocalStorage("so-cart");
+  let totalItems = 0;
+  if (cartItems) {
+    if (Array.isArray(cartItems)) {
+      totalItems = cartItems.length;
+    } else {
+      totalItems = 1;
+    }
+  }
+  
+  if (totalItems > 0) {
+    const cartIcon = qs(".cart a");
+    if (cartIcon) {
+      let badge = qs(".cart-superscript", cartIcon);
+      if (!badge) {
+        cartIcon.insertAdjacentHTML("beforeend", `<span class="cart-superscript">${totalItems}</span>`);
+      } else {
+        badge.textContent = totalItems;
+      }
+    }
+  }
+}
