@@ -6,18 +6,20 @@ function convertToJson(res) {
   }
 }
 
+const baseURL = import.meta.env.VITE_SERVER_URL || "https://wdd330-backend.onrender.com/";
+
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
   }
-  getData() {
-    return fetch(this.path)
+  async getData() {
+    return fetch(baseURL + `products/search/${this.category}`)
       .then(convertToJson)
-      .then((data) => data);
+      .then((data) => data.Result);
   }
   async findProductById(id) {
-    const products = await this.getData();
-    return products.find((item) => item.Id === id);
+    return fetch(baseURL + `product/${id}`)
+      .then(convertToJson)
+      .then((data) => data.Result);
   }
 }

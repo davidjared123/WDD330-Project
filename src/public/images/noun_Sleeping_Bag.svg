@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Sleeping Bag Body -->
+  <path d="M25 20 C25 5, 75 5, 75 20 L80 80 C80 95, 20 95, 20 80 Z" fill="black" />
+  <!-- Face Opening -->
+  <ellipse cx="50" cy="25" rx="15" ry="10" fill="white" />
+  <!-- Zipper / Seams -->
+  <line x1="50" y1="40" x2="50" y2="85" stroke="white" stroke-width="2" stroke-dasharray="4,2"/>
+  <path d="M25 50 Q50 55 75 50" stroke="white" stroke-width="2" fill="none"/>
+  <path d="M23 70 Q50 75 77 70" stroke="white" stroke-width="2" fill="none"/>
+</svg>

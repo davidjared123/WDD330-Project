@@ -277,3 +277,36 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* Category List Styles */
+.product-category-list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.category-item a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--dark-grey);
+  font-weight: bold;
+}
+
+.category-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
