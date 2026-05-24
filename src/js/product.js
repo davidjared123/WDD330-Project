@@ -6,7 +6,7 @@ loadHeaderFooter();
 
 const productId = getParam("product");
 // Note: findProductById uses just the ID and hits the API
-const dataSource = new ProductData("tents"); 
+const dataSource = new ProductData(); 
 
 const product = new ProductDetails(productId, dataSource);
 product.init();

@@ -25,7 +25,7 @@ export default class ProductList {
   }
 
   async init() {
-    this.list = await this.dataSource.getData();
+    this.list = await this.dataSource.getData(this.category);
     this.renderList(this.list);
     this.updateBreadcrumbs();
   }
