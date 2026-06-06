@@ -34,7 +34,7 @@ export default class ShoppingCart {
     const parentElement = document.querySelector(this.parentSelector);
     
     if (cartItems && cartItems.length > 0) {
-      renderListWithTemplate(this.cartItemTemplate, parentElement, cartItems);
+      renderListWithTemplate(cartItemTemplate, parentElement, cartItems);
 
       const total = cartItems.reduce((acc, item) => acc + (item.FinalPrice * (item.quantity || 1)), 0);
       const cartFooter = document.querySelector(".cart-footer");

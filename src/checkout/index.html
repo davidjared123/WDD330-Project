@@ -16,8 +16,136 @@
     <header class="divider" id="main-header"></header>
 
     <main class="divider">
-      <section class="products">
+      <section class="checkout-container">
         <h2>Review & Place your Order</h2>
+        <form id="checkout-form" class="checkout-form">
+          <fieldset>
+            <legend>Shipping Address</legend>
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                required
+                placeholder="John"
+              />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input
+                type="text"
+                id="lname"
+                name="lname"
+                required
+                placeholder="Doe"
+              />
+            </div>
+            <div class="form-group full-width">
+              <label for="street">Street Address</label>
+              <input
+                type="text"
+                id="street"
+                name="street"
+                required
+                placeholder="123 Main St"
+              />
+            </div>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="city">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  required
+                  placeholder="Rexburg"
+                />
+              </div>
+              <div class="form-group">
+                <label for="state">State</label>
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  required
+                  placeholder="ID"
+                />
+              </div>
+              <div class="form-group">
+                <label for="zip">Zip Code</label>
+                <input
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  required
+                  placeholder="83440"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment</legend>
+            <div class="form-group full-width">
+              <label for="cardNumber">Credit Card Number</label>
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                required
+                placeholder="1234123412341234"
+                pattern="\d{16}"
+                title="Please enter a 16-digit credit card number"
+              />
+            </div>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="expiration">Expiration Date</label>
+                <input
+                  type="text"
+                  id="expiration"
+                  name="expiration"
+                  required
+                  placeholder="MM/YY"
+                  pattern="\d{1,2}/\d{2}"
+                  title="Please enter expiry date as MM/YY"
+                />
+              </div>
+              <div class="form-group">
+                <label for="code">Security Code (CVV)</label>
+                <input
+                  type="text"
+                  id="code"
+                  name="code"
+                  required
+                  placeholder="123"
+                  pattern="\d{3,4}"
+                  title="Please enter a 3 or 4-digit code"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset id="order-summary" class="order-summary">
+            <legend>Order Summary</legend>
+            <ul>
+              <li>Number of Items: <span id="num-items">0</span></li>
+              <li>Item Subtotal: <span id="subtotal">$0.00</span></li>
+              <li>Shipping: <span id="shipping">$0.00</span></li>
+              <li>Tax (6%): <span id="tax">$0.00</span></li>
+              <li class="total-row">
+                <strong
+                  >Order Total: <span id="order-total">$0.00</span></strong
+                >
+              </li>
+            </ul>
+          </fieldset>
+
+          <button type="submit" id="checkout-btn" class="btn-checkout">
+            Checkout
+          </button>
+        </form>
       </section>
     </main>
 
