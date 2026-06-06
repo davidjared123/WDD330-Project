@@ -446,3 +446,48 @@ footer {
   padding: 0.8rem;
   border-radius: 4px;
 }
+
+/* Custom Alert Box */
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #ffeceb 0%, #fcd2d1 100%);
+  border-left: 5px solid #d9534f;
+  color: #a94442;
+  padding: 12px 20px;
+  margin: 15px auto;
+  max-width: 600px;
+  border-radius: 4px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease;
+}
+
+.alert p {
+  margin: 0;
+  padding: 0;
+}
+
+.alert span {
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: color 0.2s;
+  padding: 0 5px;
+}
+
+.alert span:hover {
+  color: #333;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

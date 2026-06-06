@@ -1,5 +1,5 @@
 import ExternalServices from "./ExternalServices.mjs";
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage } from "./utils.mjs";
 
 function formDataToJSON(formElement) {
   const formData = new FormData(formElement);
@@ -98,7 +98,30 @@ export default class CheckoutProcess {
     try {
       const res = await this.services.checkout(json);
       console.log("Order submission response:", res);
+      // Clear cart
+      localStorage.removeItem(this.key);
+      // Redirect to success page
+      window.location.href = "success.html";
     } catch (err) {
+      // Remove any existing alerts first
+      const existingAlerts = document.querySelectorAll(".alert");
+      existingAlerts.forEach((alert) => alert.remove());
+
+      if (err.name === "servicesError") {
+        const errorMsgObj = err.message;
+        if (typeof errorMsgObj === "object") {
+          // If it is an object, display each error message
+          for (const key in errorMsgObj) {
+            if (Object.prototype.hasOwnProperty.call(errorMsgObj, key)) {
+              alertMessage(errorMsgObj[key]);
+            }
+          }
+        } else {
+          alertMessage(errorMsgObj);
+        }
+      } else {
+        alertMessage("An unexpected error occurred. Please try again.");
+      }
       console.error("Order submission error:", err);
     }
   }

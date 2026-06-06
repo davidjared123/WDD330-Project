@@ -1,12 +1,13 @@
-function convertToJson(res) {
+async function convertToJson(res) {
+  const jsonResponse = await res.json();
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    throw new Error("Bad Response");
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 
-const baseURL = import.meta.env.VITE_SERVER_URL || "https://wdd330-backend.onrender.com/";
+const baseURL = import.meta.env.VITE_SERVER_URL || 'https://wdd330-backend.onrender.com/';
 
 export default class ExternalServices {
   constructor() {}
@@ -18,9 +19,9 @@ export default class ExternalServices {
   }
   
   async findProductById(id) {
-    return fetch(baseURL + `product/${id}`)
-      .then(convertToJson)
-      .then((data) => data.Result);
+    const response = await fetch(baseURL + `product/${id}`);
+    const data = await convertToJson(response);
+    return data.Result;
   }
 
   async checkout(payload) {

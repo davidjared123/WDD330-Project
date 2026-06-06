@@ -14,11 +14,17 @@ if (zipInput) {
   });
 }
 
-// Handle form submission
-const checkoutForm = document.querySelector('#checkout-form');
-if (checkoutForm) {
-  checkoutForm.addEventListener('submit', (e) => {
+// Handle form validation and submission on checkout button click
+const submitBtn = document.querySelector('#checkoutSubmit');
+if (submitBtn) {
+  submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    myCheckout.checkout(e.target);
+    const myForm =
+      document.querySelector('#checkout-form') || document.forms[0];
+    const chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if (chk_status) {
+      myCheckout.checkout(myForm);
+    }
   });
 }

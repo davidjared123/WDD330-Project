@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage, updateCartBadge } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, updateCartBadge, alertMessage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   const discount = product.SuggestedRetailPrice - product.FinalPrice;
@@ -63,6 +63,7 @@ export default class ProductDetails {
     
     setLocalStorage("so-cart", cart);
     updateCartBadge();
+    alertMessage("Item added to cart!", false);
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
