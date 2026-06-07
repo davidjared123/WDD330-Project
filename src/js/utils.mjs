@@ -85,6 +85,14 @@ export function updateCartBadge() {
       } else {
         badge.textContent = totalItems;
       }
+
+      // Trigger backpack animation
+      const cartDiv = qs(".cart");
+      if (cartDiv) {
+        cartDiv.classList.remove("animate-cart");
+        void cartDiv.offsetWidth; // Force reflow
+        cartDiv.classList.add("animate-cart");
+      }
     }
   }
 }
