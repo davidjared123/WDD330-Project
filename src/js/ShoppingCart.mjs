@@ -1,17 +1,20 @@
 import { getLocalStorage, renderListWithTemplate, updateCartBadge } from "./utils.mjs";
 
 function cartItemTemplate(item) {
+  const imageSrc = item.Images 
+    ? (item.Images.PrimaryMedium || item.Images.PrimarySmall || item.Images.PrimaryLarge) 
+    : (item.Image || "");
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${imageSrc}"
       alt="${item.Name}"
     />
   </a>
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
   </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <p class="cart-card__color">${item.Colors && item.Colors[0] ? item.Colors[0].ColorName : ""}</p>
   <div class="cart-card__quantity">
     <button class="quantity-btn minus" data-id="${item.Id}">-</button>
     <span>${item.quantity || 1}</span>
@@ -34,25 +37,33 @@ export default class ShoppingCart {
     const parentElement = document.querySelector(this.parentSelector);
     
     if (cartItems && cartItems.length > 0) {
-      renderListWithTemplate(cartItemTemplate, parentElement, cartItems);
+      renderListWithTemplate(cartItemTemplate, parentElement, cartItems, "afterbegin", true);
 
       const total = cartItems.reduce((acc, item) => acc + (item.FinalPrice * (item.quantity || 1)), 0);
       const cartFooter = document.querySelector(".cart-footer");
       const cartTotal = document.querySelector(".cart-total");
       
-      cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
-      cartFooter.classList.remove("hide");
+      if (cartTotal) {
+        cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+      }
+      if (cartFooter) {
+        cartFooter.classList.remove("hide");
+      }
 
-      // Add event listeners for quantities
-      document.querySelectorAll(".quantity-btn.minus").forEach(btn => {
+      // Add event listeners for quantities (scoped to parentElement to prevent duplicates)
+      parentElement.querySelectorAll(".quantity-btn.minus").forEach(btn => {
         btn.addEventListener("click", () => this.updateQuantity(btn.dataset.id, -1));
       });
-      document.querySelectorAll(".quantity-btn.plus").forEach(btn => {
+      parentElement.querySelectorAll(".quantity-btn.plus").forEach(btn => {
         btn.addEventListener("click", () => this.updateQuantity(btn.dataset.id, 1));
       });
 
     } else {
       parentElement.innerHTML = "<p>Your cart is empty.</p>";
+      const cartFooter = document.querySelector(".cart-footer");
+      if (cartFooter) {
+        cartFooter.classList.add("hide");
+      }
     }
   }
 

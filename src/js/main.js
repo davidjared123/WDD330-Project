@@ -1,13 +1,13 @@
-import Alert from './Alert.js';
-import { loadHeaderFooter, alertMessage } from './utils.mjs';
+import Alert from "./Alert.js";
+import { loadHeaderFooter, alertMessage } from "./utils.mjs";
 
 loadHeaderFooter();
 
-const newsletterForm = document.getElementById('newsletter-form');
+const newsletterForm = document.getElementById("newsletter-form");
 if (newsletterForm) {
-  newsletterForm.addEventListener('submit', (e) => {
+  newsletterForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const emailInput = document.getElementById('newsletter-email');
+    const emailInput = document.getElementById("newsletter-email");
     alertMessage(`Thank you for subscribing with ${emailInput.value}!`, false);
     newsletterForm.reset();
   });
@@ -17,9 +17,9 @@ const alert = new Alert();
 alert.init();
 
 function showRegistrationModal() {
-  const modal = document.createElement('div');
-  modal.id = 'registration-modal';
-  modal.className = 'modal-overlay';
+  const modal = document.createElement("div");
+  modal.id = "registration-modal";
+  modal.className = "modal-overlay";
   modal.innerHTML = `
     <div class="modal-content">
       <span class="close-modal">&times;</span>
@@ -36,9 +36,11 @@ function showRegistrationModal() {
     document.body.removeChild(modal);
   };
 
-  modal.querySelector('.close-modal').addEventListener('click', closeModal);
-  modal.querySelector('.btn-modal-dismiss').addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
+  modal.querySelector(".close-modal").addEventListener("click", closeModal);
+  modal
+    .querySelector(".btn-modal-dismiss")
+    .addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       closeModal();
     }
@@ -48,10 +50,10 @@ function showRegistrationModal() {
 }
 
 function checkFirstVisit() {
-  const visited = localStorage.getItem('visited_before');
+  const visited = localStorage.getItem("visited_before");
   if (!visited) {
     showRegistrationModal();
-    localStorage.setItem('visited_before', 'true');
+    localStorage.setItem("visited_before", "true");
   }
 }
 
